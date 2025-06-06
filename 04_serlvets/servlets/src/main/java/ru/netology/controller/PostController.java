@@ -1,6 +1,6 @@
 package ru.netology.controller;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
 import ru.netology.exception.NotFoundException;
 import ru.netology.model.Post;
 import ru.netology.service.PostService;
@@ -50,7 +50,6 @@ public class PostController {
   }
 
   public void removeById(long id, HttpServletResponse response) throws IOException {
-    // TODO: deserialize request & serialize response
     response.setContentType(APPLICATION_JSON);
     try {
       service.removeById(id);

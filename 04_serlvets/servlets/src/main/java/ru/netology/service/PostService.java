@@ -23,7 +23,7 @@ public class PostService {
 
   public Post save(Post post) {
     Post saved = repository.save(post);
-    if (saved != null) {
+    if (saved == null) {
       throw new NotFoundException("Такого постав с " + post.getId() + " не существует");
     }
     return saved;

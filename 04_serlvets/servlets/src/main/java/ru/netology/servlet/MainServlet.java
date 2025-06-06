@@ -1,5 +1,13 @@
 package ru.netology.servlet;
 
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import ru.netology.controller.PostController;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+
 import ru.netology.controller.PostController;
 import ru.netology.repository.PostRepository;
 import ru.netology.service.PostService;
@@ -15,11 +23,18 @@ public class MainServlet extends HttpServlet {
   private PostController controller;
 
   @Override
-  public void init() {
+  public void init(ServletConfig config) throws ServletException {
+    super.init(config);
+    WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+    controller = context.getBean(PostController.class);
+  }
+
+  // TODO (delete after done)
+  /*public void init() {
     final var repository = new PostRepository();
     final var service = new PostService(repository);
     controller = new PostController(service);
-  }
+  }*/
 
   @Override
   protected void service(HttpServletRequest req, HttpServletResponse resp) {
