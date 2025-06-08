@@ -25,16 +25,12 @@ public class MainServlet extends HttpServlet {
   @Override
   public void init(ServletConfig config) throws ServletException {
     super.init(config);
+    // Получаем Spring контекст
     WebApplicationContext context = WebApplicationContextUtils.getRequiredWebApplicationContext(getServletContext());
+    // Получаем бин контроллера
     controller = context.getBean(PostController.class);
   }
 
-  // TODO (delete after done)
-  /*public void init() {
-    final var repository = new PostRepository();
-    final var service = new PostService(repository);
-    controller = new PostController(service);
-  }*/
 
   @Override
   protected void service(HttpServletRequest req, HttpServletResponse resp) {

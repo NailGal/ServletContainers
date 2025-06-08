@@ -1,5 +1,6 @@
 package ru.netology.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.netology.model.Post;
 
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.*;
 
 // Stub
+@Repository
 public class PostRepository {
 
   private final AtomicLong counter = new AtomicLong(0);
