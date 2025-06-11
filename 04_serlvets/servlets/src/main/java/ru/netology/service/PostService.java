@@ -1,11 +1,13 @@
 package ru.netology.service;
 
+import org.springframework.stereotype.Service;
 import ru.netology.exception.NotFoundException;
 import ru.netology.model.Post;
 import ru.netology.repository.PostRepository;
 
 import java.util.List;
 
+@Service
 public class PostService {
   private final PostRepository repository;
 
@@ -22,11 +24,17 @@ public class PostService {
   }
 
   public Post save(Post post) {
-    return repository.save(post);
+    Post saved = repository.save(post);
+    if (saved == null) {
+      throw new NotFoundException("Такого постав с " + post.getId() + " не существует");
+    }
+    return saved;
   }
 
   public void removeById(long id) {
-    repository.removeById(id);
+    if (!repository.removeById(id)) {
+      throw new NotFoundException("Такого поста с id=" + id + " не существует");
+    }
   }
 }
 
